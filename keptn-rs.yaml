@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+#contains 2 things object name and label
+  name: keptn-rs
+
+spec:
+#contains no. of replicas and pods spec
+  replicas: 3
+  selector:
+    matchLabels:
+      app: keptn-app
+  
+  template:
+  #pods spec
+    metadata:
+      name: keptn-pod
+      labels:
+        app: keptn-app
+    
+    spec:
+      containers:
+      - name: keptn-container
+        image: gardnera/thekindkeptn:0.0.15
+        ports:
+        - containerPort: 80
